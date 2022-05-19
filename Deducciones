@@ -1,0 +1,59 @@
+namespace sistemadenomina
+{
+    class program
+    {
+        static void Main(string[] args)
+        {
+            Int32 x = 0, salarioB = 0, sueldoN = 0,isr=0, AFP = 0, sfs = 0, cantidad = 0;
+            string NOMBRES ="";
+            Console.WriteLine("INTRODUZCA LA CANTIDAD DE SALARIOS A CALCULAR");
+            cantidad = Int32.Parse(Console.ReadLine());
+            var i = new string[cantidad];
+            var ii = new double[cantidad];            
+            for (x = 0; x < cantidad; x++) 
+            {
+                Console.WriteLine("Indiquenos su nombre");
+                i[x] = Console.ReadLine();
+                Console.WriteLine("INDIQUE SU SUELDO BRUTO");
+                ii[x] = Int32.Parse(Console.ReadLine()); 
+            }
+            for (x = 0; x<cantidad; x++)
+            {
+                if (ii[x] > 0.01)
+                {
+                    Console.WriteLine("El IRS es" + ii[x] * 0.0192);
+
+                }
+                else if (ii[x] > 578.52)
+                {
+                    Console.WriteLine("El IRS es" + ii[x] * 0.064);
+                }
+                else if (ii[x] > 4910.19)
+                {
+                    Console.WriteLine("El IRS es" + ii[x] * 0.1088);
+                }
+                else if (ii[x] > 24222.22)
+                {
+                    Console.WriteLine("El IRS es" + ii[x] * 0.2352);
+                }
+                else if (ii[x] > 97184)
+                {
+                    Console.WriteLine("El IRS es" + ii[x] * 0.34);
+                }
+                else if (ii[x] > 291551)
+                {
+                    Console.WriteLine("El IRS es" + ii[x] * 0.35);
+                }
+                else
+                {
+                    Console.WriteLine("El IRS es nulo");
+                }
+            }
+            for (x = 0; x < cantidad; x++)
+            {
+                Console.WriteLine("Se AFP tiene un total de" + ii[x]*0.982);
+            }
+        }
+        
+    }
+}
