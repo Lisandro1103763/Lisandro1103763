@@ -2,7 +2,7 @@ namespace sistemadenomina
 {
     class program
     {
-        static void Main(string[] args)
+        static void (string[] args)
         {
             Int32 x = 0, salarioB = 0, sueldoN = 0,isr=0, AFP = 0, sfs = 0, cantidad = 0;
             string NOMBRES ="";

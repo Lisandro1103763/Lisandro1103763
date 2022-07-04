@@ -1,0 +1,175 @@
+Implementando  el sistema ;
+Implementando  el sistema . Colecciones . genérico ;
+Implementando  el sistema . Modelo de componente ;
+Implementando  el sistema . datos ;
+Implementando  el sistema . dibujo ;
+Implementando  el sistema . Linq ;
+Implementando  el sistema . texto ;
+Implementando  el sistema . Enhebrar _ tareas ;
+Implementando  el sistema . ventanas _ formularios ;
+
+Los nombres de barberos Berberias lis
+{
+     clase parcial  pública Form1 : Formulario 
+    {
+        // listas //
+        Lista < cadena > ListaBarberos  =  new  Lista < cadena >();
+        Lista < cadena > Hora  =  nueva  Lista < cadena >();
+        Lista < Cita > Citas  =  new  Lista < Cita >();
+
+        // inicios //
+         Formulario público1 ( )
+        {
+            InicializarComponente ();
+
+            LLenar Barbero ();
+            LlenarHora ();
+        }
+         vacío  privado LLenarBarbero ()
+        {
+            ListaBarberos . Añadir ( " Mejores cortes de pelo" );
+            ListaBarberos . Añadir ( " Selena " );
+            ListaBarberos . Añadir ( " Adys " );
+            ListaBarberos . Añadir ( " Arianne " );
+            listabarbero _ DataSource  =  ListaBarberos ;
+        }
+
+         vacío  privado LlenarHora ()
+        {
+            Hora  =  Enumerables . Rango ( 07 , 12 ). Seleccione ( i  => ( DateTime . MinValue . AddHours ( i )). ToString ( " hh.mm tt " )). ALista ();
+            ListaHora . FuenteDatos  =  Hora ;
+        }
+        privado  vacío  BotonCrearCita_Click ( objeto  remitente , EventArgs  e )
+        {
+            Vacío ();
+            Predeterminado ();
+            GrupoCaja . Habilitado  =  verdadero ;
+        }
+
+         vacío  privado Vacío ()
+        {
+            NobreTexto . Texto  =  cadena . vacío ;
+            ID Texto . Texto  =  cadena . vacío ;
+            MailTexto . Texto  =  cadena . vacío ;
+            CelularTexto . Texto  =  cadena . vacío ;
+        }
+
+         vacío  privado Predeterminado ()
+        {
+            listabarbero _ ÍndiceSeleccionado  =  1 ;
+            selector de dia y hora1 . Valor  =  DiaHora . Ahora ;
+        }
+
+        privado  void  BotonCancelarCita_Click ( objeto  remitente , EventArgs  e )
+        {
+            GrupoCaja . Habilitado  =  falso ;
+
+        }
+
+        privado  vacío  BotonGuardar_Click ( objeto  remitente , EventArgs  e )
+        {
+            cita ();
+
+        }
+ cita privada nula  ()
+        {
+            var  aleatorio  =  nuevo  Aleatorio ();
+            var  cita  =  nueva  cita
+            {
+                Id  =  CédulaTexto . Texto ,
+                Numero  =  aleatorio . Siguiente ( 1000000 , 9999999 ). a la cadena (),
+                NombreCliente  =  ClienteTexto . Texto ,
+                celularCliente  =  CelularTexto . Texto ,
+                MailCliente  =  MailTexto . Texto ,
+                Barberos  =  listabarberos . ValorSeleccionado . a la cadena (),
+                Hora  =  ListaHora . ValorSeleccionado . a la cadena (),
+                DiaCreacion  =  DateTime . Ahora ,
+            };
+
+            var  enableAppoinments  =  Citas . Count ( x  =>  x . Dia . ToString ( " dd/mm/yyyy " ) ==  dateTimePicker1 . Value . ToString ( " dd/mm/yyyy " )
+            &&  x . Hora  ==  ListaHora . ValorSeleccionado . a la cadena ());
+
+            if ( citas habilitadas  >  0 )
+            {
+                Cuadro de mensaje . Mostrar ( " El horario esta lleno " );
+                volver ;
+            }
+
+            citas _ Añadir ( cita );
+            var  valorhora  =  Hora . FirstOrDefault ( x  =>  x . ToString () ==  ListaHora . SelectedValue . ToString ());
+            hora _ Quitar ( valorhora );
+            ListaHora . Fuente de datos  =  nulo ;
+            ListaHora . FuenteDatos  =  Hora ;
+            GCita ();
+            GrupoCaja . Habilitado  =  falso ;
+            Vacío ();
+        }
+Cita de clase  pública
+        {
+             ID de cadena  pública { obtener ; conjunto ; }
+             cadena  pública Código { obtener ; conjunto ; }
+            public  string  NombreCliente { get ; conjunto ; }
+            public  string  TelefonoCliente { get ; conjunto ; }
+            public  string  MailCliente { get ; conjunto ; }
+             cadena  pública Barbero { obtener ; conjunto ; }
+            public  DateTime  Dia { get ; conjunto ; }
+             cadena  pública DateCustom
+            {
+                obtener
+                {
+                    volver  Dia . ToString ( " MMMM dd, aaaa " );
+                }
+            }
+             cadena  pública Hora { obtener ; conjunto ; }
+            public  DateTime  FechaCreacion { get ; conjunto ; }
+        }
+
+         GCita anulada  privada ()
+        {
+            dataGridView1 . Fuente de datos  =  nulo ;
+            dataGridView1 . DataSource  =  Citas ;
+            dataGridView1 . Columnas [ " ID " ]. HeaderText  =  " Identificacion " ;
+            dataGridView1 . Columnas [ " Numero " ]. HeaderText  =  " Numero " ;
+            dataGridView1 . Columnas [ " NombreCliente " ]. TextoCabecera  =  " Cliente " ;
+            dataGridView1 . Columnas [ " CelularCliente " ]. HeaderText  =  " Celular " ;
+            dataGridView1 . Columnas [ " MailCliente " ]. TextoCabecera  =  " Mail " ;
+            dataGridView1 . Columnas [ " Barberos " ]. HeaderText  =  " Barberos " ;
+            dataGridView1 . Columnas [ " Dia Pautado " ]. HeaderText  =  " Dia Pautado " ;
+            dataGridView1 . Columnas [ " Hora " ]. HeaderText  =  " Hora " ;
+            dataGridView1 . Columnas [ " DiaCreacion " ]. HeaderText  =  " Dia de Creación " ;
+        }
+
+
+        
+
+        privado  void  label1_Click ( remitente del objeto  , EventArgs e ) 
+        {
+
+        }
+
+        privado  void  groupBox1_Enter ( objeto  remitente , EventArgs  e )
+        {
+
+        }
+
+         etiqueta vacía  privada4_Click ( remitente del objeto , EventArgs e )  
+        {
+
+        }
+
+         etiqueta vacía  privada3_Click ( remitente del objeto , EventArgs e )  
+        {
+
+        }
+
+        privado  vacío  ClienteTexto_TextChanged ( objeto  remitente , EventArgs  e )
+        {
+
+        }
+
+        privado  void  ListaHora_SelectedIndexChanged ( objeto  remitente , EventArgs  e )
+        {
+
+        }
+    }
+}
